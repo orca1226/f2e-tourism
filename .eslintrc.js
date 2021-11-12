@@ -44,6 +44,10 @@ module.exports = {
       }],
       'vue/html-closing-bracket-spacing': [2, { // Vue 中的 html 的撰寫規則，詳請請查閱官方文件
           selfClosingTag: 'always'
+      }],
+      'new-cap': ["error", {
+        'newIsCapExceptions': ['jsSHA']
       }]
+      
   }
 }
