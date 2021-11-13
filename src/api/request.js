@@ -28,7 +28,10 @@ const request = axios.create({
   // 請求抬頭
   headers: getAuthorizationHeader(),
   // 請求超時設置
-  timeout: 30000
+  timeout: 30000,
+  params: {
+    $format: 'JSON'
+  }
 })
 
 export default request

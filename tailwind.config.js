@@ -11,7 +11,7 @@ module.exports = {
     colors: {
       green: {
         light: '#1EB893',
-        DEFAULT: 'linear-gradient(155.4deg, #78E389 0.2%, #1EB893 90.81%)'
+        DEFAULT: '#10CC9F'
       },
       blue: '#0085FF',
       yellow: '#FFD746',
@@ -26,6 +26,10 @@ module.exports = {
         300: '#E7E7E7',
         400: '#545454',
         500: '#9A9A9A'
+      },
+      black: {
+        light: '#0E0E0E',
+        dark: '#333333'
       }
     },
     fontFamily: {
@@ -34,16 +38,29 @@ module.exports = {
     'bg-green': 'linear-gradient(155.4deg, #78E389 0.2%, #1EB893 90.81%)',
     extend: {
       fontSize: {
+        12: '12px',
+        14: '14px',
         15: '15px',
         16: '16px'
       },
       borderRadius: {
+        '10px': '10px',
         '15px': '15px',
         '4xl': '136px'
       },
       zIndex: {
         1: '1',
         '-1': '-1'
+      },
+      screens: {
+        ml: '850px'
+      },
+      boxShadow: {
+        btn: '0px 4px 40px rgba(0, 0, 0, 0.05)',
+        btnFloat: '0px 4px 40px rgba(0, 0, 0, 0.12)'
+      },
+      transitionDuration: {
+        DEFAULT: '.3s'
       }
     }
   },
