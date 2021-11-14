@@ -1,13 +1,12 @@
 export default [
   {
-    title: '北部',
+    area: '北部',
     src: 'N',
     county: [
       {
         CityName: '臺北市',
         City: 'Taipei'
       },
-
       {
         CityName: '新北市',
         City: 'NewTaipei'
@@ -36,7 +35,7 @@ export default [
     ]
   },
   {
-    title: '中部',
+    area: '中部',
     src: 'M',
     county: [
       {
@@ -62,7 +61,7 @@ export default [
     ]
   },
   {
-    title: '南部',
+    area: '南部',
     src: 'S',
     county: [
       {
@@ -89,7 +88,7 @@ export default [
     ]
   },
   {
-    title: '東部',
+    area: '東部',
     src: 'E',
     county: [
       {
@@ -103,7 +102,7 @@ export default [
     ]
   },
   {
-    title: '離島',
+    area: '離島',
     src: 'O',
     county: [
       {

@@ -1,17 +1,20 @@
 <template>
   <div id="app">
-    <TheNavbar />
+    <Navbar />
     <router-view class="pt-[64px]"></router-view>
+    <Footer />
   </div>
 </template>
 
 <script>
-import TheNavbar from '@/components/TheNavbar.vue'
+import Navbar from '@/components/TheNavbar.vue'
+import Footer from '@/components/TheFooter.vue'
 
 export default {
   name: 'App',
   components: {
-    TheNavbar
+    Navbar,
+    Footer
   }
 }
 </script>

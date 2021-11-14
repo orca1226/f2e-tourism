@@ -66,6 +66,8 @@ module.exports = {
   },
   variants: {
     extend: {
+      display: ['responsive', 'hover'],
+      flexWrap: ['responsive', 'hover']
     }
   },
   plugins: []

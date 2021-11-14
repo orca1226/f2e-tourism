@@ -1,6 +1,7 @@
 // 基本設定
 body {
   @apply text-16;
+  line-height: 20px;
 }
 input {
   &:focus-visible {
@@ -64,7 +65,7 @@ a {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: rgba($color: #ffffff, $alpha: 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,7 +138,7 @@ a {
 // transition 動畫
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity 1s;
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;

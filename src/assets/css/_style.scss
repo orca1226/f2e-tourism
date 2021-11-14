@@ -1,0 +1,32 @@
+.horizontal .v-hl-btn {
+  svg {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    transition: .3s;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.horizontal .v-hl-btn-next {
+  svg {
+    background: linear-gradient(120.85deg, #5FE774 -28.71%, #1EB893 68.7%);
+    color: white;
+  }
+}
+
+.horizontal .v-hl-btn-prev {
+  svg {
+    background: rgba(255, 255, 255, 0.65);
+    @apply text-green;
+  }
+}
+
+.horizontal >>> .v-hl-btn-prev svg {
+  margin: 0;
+  padding: 4px;
+  height: 30px;
+  width: 30px;
+}

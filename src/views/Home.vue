@@ -20,7 +20,7 @@
       </section>
 
       <!-- 縣市快選區塊 -->
-      <section class="areaSelect relative h-[400px] xl:h-[300px]">
+      <section class="areaSelect relative h-min-[400px] xl:h-[300px]">
         <!-- 灰色背景色塊 -->
         <div class="areaSelect__bg absolute h-full bg-gray-50 w-4/5 rounded-br-4xl -z-1"></div>
         <!-- 裝飾1 -->
@@ -29,19 +29,30 @@
         <div class="center-center content-center h-full
         sm:w-full ml:w-4/5 mx-auto flex-wrap"
         >
-          <div class="areaSelect__title ml:w-[150px] justify-end mb-8">
+          <div class="areaSelect__title ml:w-[150px] justify-end my-8">
             <div class="flex flex-col justify-center">
-              <h3 class="text-3xl letter-spacing--lg mb-4 min-w-[100px]">縣市快選</h3>
+              <h3 class="text-3xl letter-spacing--lg mb-4 min-w-[100px] text-center xl:text-left">縣市快選</h3>
               <h6 class="letter-spacing--r text-gray-500">CHOOSE CITIES</h6>
             </div>
           </div>
-          <AreaBtn class="z-1 w-full xl:w-3/4" />
+          <AreaBtn
+            class="z-1 w-full xl:w-3/4"
+            @onClickCountyBtn="onclickCountyBtn"
+          />
         </div>
       </section>
 
       <!-- 活動區塊 -->
-      <section class="activityBlock relative z-1 w-full max-w-[1300px] mx-auto flex py-16 px-4 md:flex-wrap lg:flex-nowrap" v-if="dataActivity">
-        <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-4 md:mx-auto">
+      <section class="activityBlock relative z-10 w-full max-w-[1300px] mx-auto md:flex py-16 px-4 md:flex-wrap lg:flex-nowrap" v-if="dataActivity">
+        <div class="text-center md:hidden">
+          <h3 class="text-3xl py-6">
+            多久沒有<br>
+            出門走走了呢？
+          </h3>
+          <h6 class="letter-spacing--r text-gray-500 mb-10">LET'S GET OUT</h6>
+          <div class="btn-action --lg hidden lg:flex">更多funny</div>
+        </div>
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-4 mx-auto">
           <div
             v-for="(activity, index) in dataActivity"
             :key="activity.id"
@@ -49,14 +60,16 @@
             :class="{'lg:translate-x-20': ((index+1)/3) > 1 }"
           >
             <InfoCard
+              class="mx-auto"
               :img="activity.Picture"
               :name="activity.Name"
               :caption="activity.Address"
               :labelList="activity.Class"
+              :highlight="activity.City"
             />
           </div>
         </div>
-        <div class="lg:pl-12 order-first md:w-full lg:w-auto lg:flex-grow lg:order-last md:text-center lg:text-left">
+        <div class="hidden md:block lg:pl-12 order-first w-full lg:w-auto lg:flex-grow lg:order-last text-center lg:text-left">
           <h3 class="text-3xl py-6">
             多久沒有<br>
             出門走走了呢？
@@ -69,7 +82,7 @@
       <!-- 美食區塊 -->
       <section class="relative min-h-[480px] flex items-center z-1">
         <!-- 裝飾2 -->
-        <div class="absolute top-[-50%] -z-1 right-0"><embed :src="require('@/assets/images/deco2_rounded.svg')" type=""></div>
+        <div class="absolute top-[-50%] -z-1 right-0"><img :src="require('@/assets/images/deco2_rounded.svg')" type=""></div>
         <!-- 灰底背景 -->
         <div class="areaSelect__bg absolute h-full bg-gray-50 w-2/5 rounded-br-full rounded-tr-full -z-1"></div>
         <!-- 標題 -->
@@ -82,7 +95,7 @@
             <div class="btn-action --lg hidden lg:flex">更多美味</div>
           </div>
           <!-- 水平輪播卡片 -->
-          <vue-horizontal v-if="dataFood" class="w-[calc(100%-160px)]" responsive>
+          <vue-horizontal v-if="dataFood" class="horizontal w-[calc(100%-160px)]" responsive>
             <div
               class="photoCard relative h-[335px] w-[230px] rounded-10px overflow-hidden mr-6 shadow-md hover:shadow-lg hover:transform hover:-translate-y-2 transition pointer"
               v-for="(item, index) in dataFood"
@@ -111,18 +124,18 @@
       </section>
 
       <!-- 住宿區塊 -->
-      <section class="hotelBlock px-4 py-24">
+      <section class="hotelBlock px-4 py-24 sm:px-16 md:px-24 lg:px-36">
         <!-- 標題 -->
         <h3 class="text-3xl py-6 text-center">
           精選住宿
         </h3>
         <h6 class="letter-spacing--r text-center text-gray-500 mb-10">ACCOMENDATION</h6>
         <!-- 卡片 -->
-        <div class="flex justify-center">
+        <div class="justify-center grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto max-w-[1300px]">
           <InfoCard
             v-for="(hotel, index) in dataHotel"
-            class="mx-3 mb-6 flex-grow transform max-w-[290px]"
-            :class="{ 'translate-y-4': index % 2 === 1   }"
+            class="mb-6 flex-grow lg:transform max-w-[290px] mx-auto"
+            :class="{ 'xl:translate-y-4': index % 2 === 1   }"
             :key="hotel.id"
             :img="hotel.Picture"
             :name="hotel.Name"
@@ -132,20 +145,6 @@
         </div>
         <div class="btn-action --lg flex mx-auto mt-8">更多住宿</div>
       </section>
-
-      <!-- 頁尾 -->
-      <footer class="h-[230px] w-full bg-black-dark flex-col center-center">
-        <embed
-          :src="require('@/assets/images/logo-white.svg')" type=""
-          class="mb-8"
-        >
-        <ul class="flex">
-          <li class="mx-4 text-gray-200"><a href="">景點介紹</a></li>
-          <li class="mx-4 text-gray-200"><a href="">特色活動</a></li>
-          <li class="mx-4 text-gray-200"><a href="">美食饗宴</a></li>
-          <li class="mx-4 text-gray-200"><a href="">經典住宿</a></li>
-        </ul>
-      </footer>
     </template>
   </div>
 </template>
@@ -154,7 +153,6 @@
 import SearchBar from '@/components/Searchbar.vue'
 import AreaBtn from '@/components/AreaBtn.vue'
 import InfoCard from '@/components/InfoCard.vue'
-import axios from 'axios'
 export default {
   name: 'Home',
   components: {
@@ -179,81 +177,27 @@ export default {
     cityStr (val) {
       return val.slice(0, 3)
     },
-    /**
-     * api 取得活動資料
-     */
-    getActivity () {
-      const today = new Date()
-      const params = {
-        $filter: `StartTime gt ${today.toISOString()}`,
-        $top: 20
-      }
-      return this.$api.tourism.getActivity(params)
-        .then((res) => {
-          const dataHasImg = this.dataManager(res.data, 'activity')
-
-          this.dataActivity = dataHasImg.splice(0, 6)
-        })
-    },
-    /**
-     * api 取得餐飲資料
-     */
-    getFood () {
-      const params = {
-        $top: 30
-      }
-      return this.$api.tourism.getFood(params)
-        .then((res) => {
-          const dataHasImg = this.dataManager(res.data, 'food')
-          this.dataFood = dataHasImg.splice(0, 16)
-        })
-    },
-    /**
-     * api 取得旅宿資料
-     */
-    getHotel () {
-      const params = {
-        $top: 20
-      }
-      return this.$api.tourism.getHotel(params)
-        .then((res) => {
-          const dataHasImg = this.dataManager(res.data, 'hotel')
-          this.dataHotel = dataHasImg.splice(0, 4)
-        })
-    },
-    /**
-     * 資料處理，過濾有圖片資料並整理所需的資料格式
-     */
-    dataManager (data, type) {
-      return data.filter((item) => 'PictureUrl1' in item.Picture).map(item => {
-        // 處理{Class}，hotel的型別為字串，其他資料為物件
-        // 將其統一成陣列回傳
-        let classes = []
-        if (type !== 'hotel') {
-          Object.keys(item).forEach(key => {
-            if (key.indexOf('Class') !== -1) {
-              classes.push(item[key])
-            }
-          })
-        } else {
-          classes = [item.Class]
-        }
-        return {
-          ...item,
-          Picture: {
-            PictureUrl: item.Picture.PictureUrl1,
-            PictureUrlDescription: item.Picture.PictureUrl1
-          },
-          Class: classes
+    onclickCountyBtn (city) {
+      this.$router.push({
+        path: '/county',
+        query: {
+          county: city.City
         }
       })
     }
+
   },
   async created () {
-    await axios.all([
-      this.getFood(),
-      this.getActivity(),
-      this.getHotel()
+    await this.axios.all([
+      this.getFood().then(res => {
+        this.dataFood = res.splice(0, 16)
+      }),
+      this.getActivity().then(res => {
+        this.dataActivity = res.splice(0, 6)
+      }),
+      this.getHotel().then(res => {
+        this.dataHotel = res.splice(0, 4)
+      })
     ])
     setTimeout(() => {
       this.loading = false

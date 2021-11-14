@@ -11,7 +11,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/County',
+    path: '/county',
     name: 'County',
     component: () => import(/* webpackChunkName: "county" */ '../views/County.vue'),
     props: (route) => ({
