@@ -1,8 +1,8 @@
 <template>
   <header class="navbar fixed h-16 w-full bg-white flex items-center px-6 justify-between z-50">
-    <div class="navbar__logo h-4 w-36 flex-grow">
-      <embed class="h-full object-contain" :src="require('@/assets/images/logo.svg')" alt="logo">
-    </div>
+    <router-link :to="{name: 'Home'}" class="navbar__logo h-4 w-36 flex-grow">
+      <img class="h-full object-contain" :src="require('@/assets/images/logo.svg')" alt="logo">
+    </router-link>
     <ul class="navbar__nav h-full w-[350px] flex justify-center items-center">
       <li class="mx-3 text-15"><a href="">景點介紹</a></li>
       <li class="mx-3 text-15"><a href="">特色活動</a></li>

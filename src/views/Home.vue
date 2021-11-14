@@ -266,7 +266,7 @@ export default {
 <style lang="postcss">
   .heroSection {
     background:  linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('../assets/images/heroImg.png') no-repeat center/cover;
-    height: 60vh;
+    height: 50vh;
     h3 {
       text-shadow: 0px 4px 15px rgba(33, 43, 40, 0.37);
     }
