@@ -1,11 +1,14 @@
 <template>
   <div class="home">
+    <!-- 載入畫面 -->
     <transition v-if="loading" name="fade">
       <div class="loading">
         <div class="loader">Loading...</div>
       </div>
     </transition>
+    <!--載入完成後的樣板 -->
     <template v-else>
+      <!-- hero section -->
       <section class="heroSection center-center">
         <div class="w-full">
           <div class="heroSection__words mx-auto">
@@ -15,6 +18,7 @@
           <!-- <SearchBar class="mx-auto mt-16" /> -->
         </div>
       </section>
+
       <!-- 縣市快選區塊 -->
       <section class="areaSelect relative h-[400px] xl:h-[300px]">
         <!-- 灰色背景色塊 -->
@@ -34,6 +38,7 @@
           <AreaBtn class="z-1 w-full xl:w-3/4" />
         </div>
       </section>
+
       <!-- 活動區塊 -->
       <section class="activityBlock relative z-1 w-full max-w-[1300px] mx-auto flex py-16 px-4 md:flex-wrap lg:flex-nowrap" v-if="dataActivity">
         <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-4 md:mx-auto">
@@ -60,22 +65,24 @@
           <div class="btn-action --lg hidden lg:flex">更多funny</div>
         </div>
       </section>
+
       <!-- 美食區塊 -->
       <section class="relative min-h-[480px] flex items-center z-1">
         <!-- 裝飾2 -->
         <div class="absolute top-[-50%] -z-1 right-0"><embed :src="require('@/assets/images/deco2_rounded.svg')" type=""></div>
+        <!-- 灰底背景 -->
         <div class="areaSelect__bg absolute h-full bg-gray-50 w-2/5 rounded-br-full rounded-tr-full -z-1"></div>
-
-        <div class="flex overflow-y-hidden py-6">
-          <div class="pl-12 pr-16 flex-shrink-0">
+        <!-- 標題 -->
+        <div class="flex py-6 px-12 w-full overflow-hidden">
+          <div class="pr-16 flex-shrink-0">
             <h3 class="text-3xl py-6">
               餐飲美食
             </h3>
             <h6 class="letter-spacing--r text-gray-500 mb-10">TASTY</h6>
             <div class="btn-action --lg hidden lg:flex">更多美味</div>
           </div>
-
-          <div class="flex" v-if="dataFood">
+          <!-- 水平輪播卡片 -->
+          <vue-horizontal v-if="dataFood" class="w-[calc(100%-160px)]" responsive>
             <div
               class="photoCard relative h-[335px] w-[230px] rounded-10px overflow-hidden mr-6 shadow-md hover:shadow-lg hover:transform hover:-translate-y-2 transition pointer"
               v-for="(item, index) in dataFood"
@@ -99,15 +106,18 @@
                 </div>
               </div>
             </div>
-          </div>
+          </vue-horizontal>
         </div>
       </section>
+
+      <!-- 住宿區塊 -->
       <section class="hotelBlock px-4 py-24">
+        <!-- 標題 -->
         <h3 class="text-3xl py-6 text-center">
           精選住宿
         </h3>
         <h6 class="letter-spacing--r text-center text-gray-500 mb-10">ACCOMENDATION</h6>
-
+        <!-- 卡片 -->
         <div class="flex justify-center">
           <InfoCard
             v-for="(hotel, index) in dataHotel"
@@ -122,6 +132,8 @@
         </div>
         <div class="btn-action --lg flex mx-auto mt-8">更多住宿</div>
       </section>
+
+      <!-- 頁尾 -->
       <footer class="h-[230px] w-full bg-black-dark flex-col center-center">
         <embed
           :src="require('@/assets/images/logo-white.svg')" type=""
@@ -135,7 +147,6 @@
         </ul>
       </footer>
     </template>
-
   </div>
 </template>
 
@@ -175,7 +186,7 @@ export default {
       const today = new Date()
       const params = {
         $filter: `StartTime gt ${today.toISOString()}`,
-        $top: 50
+        $top: 20
       }
       return this.$api.tourism.getActivity(params)
         .then((res) => {
@@ -189,12 +200,12 @@ export default {
      */
     getFood () {
       const params = {
-        $top: 50
+        $top: 30
       }
       return this.$api.tourism.getFood(params)
         .then((res) => {
           const dataHasImg = this.dataManager(res.data, 'food')
-          this.dataFood = dataHasImg.splice(0, 6)
+          this.dataFood = dataHasImg.splice(0, 16)
         })
     },
     /**
@@ -202,7 +213,7 @@ export default {
      */
     getHotel () {
       const params = {
-        $top: 50
+        $top: 20
       }
       return this.$api.tourism.getHotel(params)
         .then((res) => {
